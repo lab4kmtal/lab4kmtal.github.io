@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Etik ve Pozitif İletişim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0fdf4; /* Very light green bg */
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        }
+        .value-card {
+            transition: transform 0.2s ease;
+        }
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+
+    <!-- Ana Sayfa Linki -->
+    <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+        <i class="fas fa-home"></i> Ana Sayfa
+    </a>
+
+    <div class="max-w-5xl mx-auto">
+        <!-- Hero Section / Poster Header -->
+        <header class="hero-gradient rounded-3xl p-8 md:p-16 text-white text-center shadow-xl mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">İnternette de İnsan Kal</h1>
+            <p class="text-xl md:text-2xl font-light opacity-90 italic">"Paylaşmadan önce düşün, sevgiyle hareket et."</p>
+        </header>
+
+        <!-- Values Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <!-- Saygı -->
+            <div class="value-card bg-white p-8 rounded-2xl shadow-sm border border-green-100 text-center">
+                <div class="text-5xl mb-4 text-green-600">🤝</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Saygı</h3>
+                <p class="text-slate-500 text-sm">Farklı fikirlere ve kişisel sınırlara değer ver.</p>
+            </div>
+
+            <!-- Dürüstlük -->
+            <div class="value-card bg-white p-8 rounded-2xl shadow-sm border border-green-100 text-center">
+                <div class="text-5xl mb-4 text-green-600">✔</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Dürüstlük</h3>
+                <p class="text-slate-500 text-sm">Gerçek bilgiyi yay, yanıltıcı içerikten kaçın.</p>
+            </div>
+
+            <!-- Sorumluluk -->
+            <div class="value-card bg-white p-8 rounded-2xl shadow-sm border border-green-100 text-center">
+                <div class="text-5xl mb-4 text-green-600">⚖</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Sorumluluk</h3>
+                <p class="text-slate-500 text-sm">Dijital ayak izinin bilincinde ol ve sahip çık.</p>
+            </div>
+
+            <!-- Empati -->
+            <div class="value-card bg-white p-8 rounded-2xl shadow-sm border border-green-100 text-center">
+                <div class="text-5xl mb-4 text-green-600">❤️</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Empati</h3>
+                <p class="text-slate-500 text-sm">Ekranın başındaki kişinin de duyguları olduğunu unutma.</p>
+            </div>
+        </div>
+
+        <!-- Call to Action / Quote Section -->
+        <div class="bg-white rounded-3xl p-10 shadow-sm border-2 border-dashed border-green-200 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-green-700 mb-6 uppercase tracking-widest">Geleceğin Dijital Dünyasını Birlikte İnşa Edelim</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="bg-green-100 text-green-800 px-6 py-3 rounded-full font-semibold">Nazik Ol</div>
+                <div class="bg-green-100 text-green-800 px-6 py-3 rounded-full font-semibold">Doğrula</div>
+                <div class="bg-green-100 text-green-800 px-6 py-3 rounded-full font-semibold">Destekle</div>
+                <div class="bg-green-100 text-green-800 px-6 py-3 rounded-full font-semibold">Koru</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center">
+            <p class="text-slate-400 font-medium tracking-widest uppercase text-xs">Dijital Etik Farkındalık Sergisi &bull; 2024</p>
+        </footer>
+    </div>
+</body>
+</html>

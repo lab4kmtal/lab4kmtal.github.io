@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Ayak İzi ve Gelecek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #020617;
+            color: #f8fafc;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .grid-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+
+        .grid-mesh {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotateX(60deg);
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: rotateX(60deg) translateY(0); }
+            100% { transform: rotateX(60deg) translateY(50px); }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .footprint-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .footprint {
+            opacity: 0;
+            filter: blur(2px);
+            animation: fadeFootprint 6s infinite;
+        }
+
+        @keyframes fadeFootprint {
+            0% { opacity: 0; transform: translateY(100px) scale(0.8); }
+            20% { opacity: 0.6; filter: blur(0px); }
+            80% { opacity: 0.2; filter: blur(4px); }
+            100% { opacity: 0; transform: translateY(-300px) scale(1.2); }
+        }
+
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-6 md:p-12">
+
+    <!-- Ana Sayfa Linki -->
+    <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+        <i class="fas fa-home"></i> Ana Sayfa
+    </a>
+    
+    <div class="grid-container">
+        <div class="grid-mesh"></div>
+    </div>
+
+    <!-- Footprint Animation Overlays -->
+    <div class="footprint-container overflow-hidden">
+        <div class="footprint mb-20" style="animation-delay: 0s;">
+            <svg width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 180C40 191.046 48.9543 200 60 200C71.0457 200 80 191.046 80 180V140C80 128.954 71.0457 120 60 120C48.9543 120 40 128.954 40 140V180Z" fill="url(#cyan-glow)" />
+                <circle cx="25" cy="110" r="12" fill="url(#cyan-glow)" />
+                <circle cx="45" cy="95" r="14" fill="url(#cyan-glow)" />
+                <circle cx="75" cy="95" r="14" fill="url(#cyan-glow)" />
+                <circle cx="95" cy="110" r="12" fill="url(#cyan-glow)" />
+                <defs>
+                    <radialGradient id="cyan-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 140) rotate(90) scale(60 40)">
+                        <stop stop-color="#22d3ee" />
+                        <stop offset="1" stop-color="#0891b2" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+            </svg>
+        </div>
+        <div class="footprint" style="animation-delay: 3s; margin-left: 100px;">
+             <!-- Duplicate footprint for trail effect -->
+             <svg width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.5;">
+                <path d="M40 180C40 191.046 48.9543 200 60 200C71.0457 200 80 191.046 80 180V140C80 128.954 71.0457 120 60 120C48.9543 120 40 128.954 40 140V180Z" fill="url(#cyan-glow)" />
+                <circle cx="25" cy="110" r="12" fill="url(#cyan-glow)" />
+                <circle cx="45" cy="95" r="14" fill="url(#cyan-glow)" />
+                <circle cx="75" cy="95" r="14" fill="url(#cyan-glow)" />
+                <circle cx="95" cy="110" r="12" fill="url(#cyan-glow)" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <header class="w-full max-w-4xl z-10 text-center md:text-left">
+        <h1 class="orbitron text-2xl md:text-5xl font-bold glow-text leading-tight uppercase">
+            İnternete attığın hiçbir şey <span class="text-cyan-400">silinmez.</span>
+        </h1>
+    </header>
+
+    <main class="w-full max-w-4xl z-10 flex flex-col md:flex-row gap-8 items-center justify-center">
+        <!-- Stat Card -->
+        <div class="glass-panel p-8 rounded-3xl w-full md:w-1/2 relative overflow-hidden group">
+            <div class="absolute -right-10 -top-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl"></div>
+            <h2 class="orbitron text-6xl font-black text-cyan-400 mb-2">%54</h2>
+            <p class="text-xl font-light leading-relaxed">
+                Genç telefon kullanımını kontrol etmekte zorlanıyor.
+            </p>
+            <div class="mt-6 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-cyan-500 w-[54%] shadow-[0_0_10px_#06b6d4]"></div>
+            </div>
+        </div>
+
+        <!-- Warning Card -->
+        <div class="glass-panel p-8 rounded-3xl w-full md:w-1/2 border-l-4 border-l-cyan-500">
+            <h3 class="orbitron text-sm uppercase tracking-[0.3em] text-cyan-500 mb-4">Veri İzleri</h3>
+            <p class="text-lg italic opacity-80">
+                "Her tıklama, her beğeni, her paylaşım... Dijital evrende sonsuza dek yankılanan parmak izlerindir."
+            </p>
+        </div>
+    </main>
+
+    <footer class="w-full max-w-4xl z-10 flex justify-between items-end border-t border-cyan-900/30 pt-8 pb-4">
+        <div class="orbitron text-[10px] tracking-widest opacity-40">
+            SİSTEM DURUMU: AKTİF<br>
+            VERİ AKIŞI: KESİNTİSİZ
+        </div>
+        <div class="text-right">
+            <span class="text-cyan-500 animate-pulse">●</span>
+            <span class="text-xs uppercase tracking-tighter opacity-60 ml-2">Dijital Farkındalık Deneyimi</span>
+        </div>
+    </footer>
+
+    <script>
+        // Mouse follow effect for subtle grid distortion
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            document.querySelector('.grid-mesh').style.transform = `rotateX(60deg) translateX(${moveX}px) translateY(${moveY}px)`;
+        });
+    </script>
+</body>
+</html>

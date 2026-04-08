@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHSOSYAL | Dijital İstatistikler</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary-blue: #0ea5e9;
+            --dark-blue: #0369a1;
+            --bg-light: #f8fafc;
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .infographic-card {
+            background: white;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        @media (max-width: 768px) {
+            .infographic-card { grid-template-columns: 1fr; }
+        }
+
+        .visual-side {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            padding: 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .visual-side::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .data-side {
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .stat-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateX(10px);
+        }
+
+        .icon-circle {
+            width: 56px;
+            height: 56px;
+            background: #f0f9ff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .big-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-blue);
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .app-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            opacity: 0.6;
+        }
+
+        .chart-visual {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 60px;
+            margin-top: 15px;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--primary-blue);
+            border-radius: 3px 3px 0 0;
+            opacity: 0.3;
+        }
+
+        .bar.active {
+            opacity: 1;
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ana Sayfa Linki -->
+    <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+        <i class="fas fa-home"></i> Ana Sayfa
+    </a>
+
+    <div class="infographic-card">
+        <!-- Sol Taraf: Öne Çıkan Başlık -->
+        <div class="visual-side">
+            <div class="relative z-10">
+                <div class="bg-white/20 w-16 h-1 w-16 mb-6 rounded-full"></div>
+                <h1 class="text-4xl font-extrabold mb-4 leading-tight">Dijital Nesil Raporu</h1>
+                <p class="text-blue-50 text-lg opacity-90 mb-8">Sosyal medya kullanım alışkanlıklarını verilerle inceleyin.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-blue-200"></i>
+                        <span>Güncel veri seti (2024)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-blue-200"></i>
+                        <span>15-24 yaş aralığı analizi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sağ Taraf: İstatistikler -->
+        <div class="data-side">
+            
+            <!-- İstatistik 1: Günlük Süre -->
+            <div class="stat-box">
+                <div class="icon-circle"><i class="fas fa-clock"></i></div>
+                <div class="flex-1">
+                    <div class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Ortalama Kullanım</div>
+                    <div class="big-number" id="time-counter">0</div>
+                    <p class="text-slate-600 mt-2 font-medium">Gençler günde ortalama <strong>4.8 saat</strong> sosyal medyada vakit geçiriyor.</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="bar-time"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- İstatistik 2: Yaygınlık -->
+            <div class="stat-box">
+                <div class="icon-circle"><i class="fas fa-mobile-screen-button"></i></div>
+                <div class="flex-1">
+                    <div class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Erişim Oranı</div>
+                    <div class="big-number">%95</div>
+                    <p class="text-slate-600 mt-2 font-medium">Gençlerin neredeyse tamamı en az bir sosyal medya platformunu aktif kullanıyor.</p>
+                    
+                    <div class="chart-visual">
+                        <div class="bar" style="height: 30%"></div>
+                        <div class="bar" style="height: 45%"></div>
+                        <div class="bar" style="height: 60%"></div>
+                        <div class="bar" style="height: 85%"></div>
+                        <div class="bar active" style="height: 95%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alt Kısım: İkonlar ve Etiket -->
+            <div class="pt-6 border-t border-slate-100 flex justify-between items-center">
+                <div class="app-icons">
+                    <i class="fab fa-instagram text-xl"></i>
+                    <i class="fab fa-tiktok text-xl"></i>
+                    <i class="fab fa-youtube text-xl"></i>
+                    <i class="fab fa-snapchat text-xl"></i>
+                </div>
+                <span class="text-xs font-bold text-slate-300 tracking-widest uppercase">AHSOSYAL EXHIBITION 2024</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Süre Sayacı Animasyonu
+            let count = 0;
+            const target = 4.8;
+            const counter = document.getElementById('time-counter');
+            
+            const interval = setInterval(() => {
+                count += 0.1;
+                counter.innerText = count.toFixed(1) + " s / Gün";
+                if(count >= target) {
+                    counter.innerText = "4.8 Saat / Gün";
+                    clearInterval(interval);
+                    document.getElementById('bar-time').style.width = '65%'; // Görsel doluluk
+                }
+            }, 30);
+        }
+    </script>
+</body>
+</html>

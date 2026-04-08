@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHSOSYAL | Dijital Sergi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #050505;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .space-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a1033 0%, #050505 100%);
+            overflow: hidden;
+        }
+
+        /* Arka plan partikülleri */
+        .stars {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: moveStars 100s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-2000px); }
+        }
+
+        /* Ana Başlık Efekti */
+        .main-title {
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            text-shadow: 
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px var(--neon-blue),
+                0 0 82px var(--neon-blue),
+                0 0 92px var(--neon-blue),
+                0 0 102px var(--neon-blue),
+                0 0 151px var(--neon-blue);
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 
+                    0 0 7px #fff,
+                    0 0 42px var(--neon-blue),
+                    0 0 82px var(--neon-blue);
+            }
+            20%, 24%, 55% {       
+                text-shadow: none;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--neon-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            margin-top: 1rem;
+            text-align: center;
+            z-index: 10;
+            opacity: 0.8;
+        }
+
+        /* Yüzen İkonlar */
+        .floating-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 15px var(--neon-blue));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Yüzen Metin Fragmanları */
+        .text-fragment {
+            position: absolute;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Giriş Butonu */
+        .enter-btn {
+            margin-top: 3rem;
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 20;
+        }
+
+        .enter-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 30px var(--neon-purple);
+        }
+
+        /* Mouse Takip Efekti İçin Overlay */
+        #glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(188, 19, 254, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 4rem; }
+            .subtitle { font-size: 1rem; }
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="space-container" id="container">
+        <div id="glow"></div>
+        
+        <!-- Ana Sayfa Linki -->
+        <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+            <i class="fas fa-home"></i> Ana Sayfa
+        </a>
+        
+        <!-- Dinamik İçerik -->
+        <div class="flex flex-col items-center justify-center text-center p-4">
+            <h1 class="main-title">AHSOSYAL</h1>
+            <p class="subtitle">Dijital Dünyada Nasıl Bir İz Bırakıyorsun?</p>
+            <button class="enter-btn" onclick="startExhibition()">Sergiye Gir</button>
+        </div>
+
+        <!-- Rastgele yüzen öğeler JS ile eklenecek -->
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const glow = document.getElementById('glow');
+
+        // Mouse takibi
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Yıldızları oluştur
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'stars';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 10 + 's';
+            container.appendChild(star);
+        }
+
+        // İkonlar ve Metinler
+        const icons = ['fa-instagram', 'fa-twitter', 'fa-tiktok', 'fa-youtube', 'fa-facebook', 'fa-linkedin', 'fa-snapchat', 'fa-discord'];
+        const fragments = [
+            "Her paylaşım bir etki bırakır",
+            "Gerçek hayatta nasılsan, dijitalde de öylesin",
+            "Görünmez izler",
+            "Dijital Kimlik",
+            "Algoritmanın Ötesi",
+            "Yankı Odaları"
+        ];
+
+        function createElements() {
+            // İkonları yerleştir
+            icons.forEach((icon, index) => {
+                const el = document.createElement('i');
+                el.className = `fa-brands ${icon} floating-icon`;
+                el.style.left = Math.random() * 80 + 10 + '%';
+                el.style.top = Math.random() * 80 + 10 + '%';
+                el.style.animationDelay = (index * 0.5) + 's';
+                el.style.color = index % 2 === 0 ? 'var(--neon-blue)' : 'var(--neon-purple)';
+                container.appendChild(el);
+            });
+
+            // Metin fragmanlarını yerleştir
+            fragments.forEach((text, index) => {
+                const frag = document.createElement('div');
+                frag.className = 'text-fragment';
+                frag.innerText = text;
+                frag.style.left = Math.random() * 70 + 15 + '%';
+                frag.style.top = Math.random() * 70 + 15 + '%';
+                frag.style.animation = `float ${7 + index}s ease-in-out infinite`;
+                container.appendChild(frag);
+            });
+        }
+
+        function startExhibition() {
+            const btn = document.querySelector('.enter-btn');
+            btn.innerHTML = "Yükleniyor...";
+            btn.style.opacity = "0.5";
+            
+            document.body.style.transition = "all 2s ease";
+            document.body.style.transform = "scale(1.5)";
+            document.body.style.opacity = "0";
+            
+            setTimeout(() => {
+                alert("Dijital dünyaya adım atıldı. Kimliğini kontrol et.");
+                location.reload(); // Örnek olarak sıfırlıyoruz
+            }, 2000);
+        }
+
+        createElements();
+    </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHSOSYAL | Karanlık Veri Duvarı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --glitch-red: #ff0000;
+            --dark-red: #7f0000;
+            --black: #0a0a0a;
+            --gray-900: #121212;
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            background-color: var(--black);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(127, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(127, 0, 0, 0.1) 0%, transparent 50%);
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: #ececec;
+            overflow-x: hidden;
+        }
+
+        .infographic-container {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 1rem;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .infographic-container { grid-template-columns: 1fr; }
+        }
+
+        /* Glitch Efekti */
+        .glitch {
+            position: relative;
+            animation: glitch-anim 4s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { transform: translate(0); text-shadow: -2px 0 red, 2px 0 blue; }
+            2% { transform: translate(2px, -2px); }
+            4% { transform: translate(-2px, 2px); }
+            6% { transform: translate(0); }
+            100% { transform: translate(0); }
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--dark-red) 0%, var(--black) 100%);
+            padding: 3rem;
+            border-right: 1px solid rgba(255, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+        }
+
+        .warning-card {
+            background: rgba(30, 30, 30, 0.6);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .warning-card:hover {
+            border-color: var(--glitch-red);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .stat-highlight {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--glitch-red);
+            line-height: 1;
+            text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Kırık Ekran Çizgileri */
+        .crack-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            height: 1px;
+            pointer-events: none;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--glitch-red);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+        }
+
+        .comment-bubble {
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            border-left: 3px solid var(--glitch-red);
+            opacity: 0.7;
+        }
+
+        .scanner-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 0, 0, 0.3);
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 15px var(--glitch-red);
+            animation: scan 3s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ana Sayfa Linki -->
+    <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+        <i class="fas fa-home"></i> Ana Sayfa
+    </a>
+
+    <div class="infographic-container">
+        <div class="scanner-line"></div>
+        
+        <!-- Sol Panel: Dramatik Giriş -->
+        <div class="sidebar">
+            <div>
+                <i class="fas fa-exclamation-triangle text-6xl mb-6 text-red-600 animate-pulse"></i>
+                <h1 class="text-4xl font-black mb-4 glitch">DİJİTAL KARANLIK</h1>
+                <p class="text-red-200 text-sm opacity-80 leading-relaxed">
+                    Ekranın arkasındaki sessiz çığlıklar. <br>Görünmez saldırılar, manipüle edilen gerçekler.
+                </p>
+            </div>
+            
+            <div class="mt-8">
+                <div class="comment-bubble">"Bunu hak ettin..."</div>
+                <div class="comment-bubble" style="margin-left: 20px;">"Hesabın silinsin!"</div>
+                <div class="comment-bubble">"Kimse seni sevmiyor."</div>
+            </div>
+
+            <div class="flex gap-4 mt-8 opacity-50">
+                <i class="fas fa-skull text-xl"></i>
+                <i class="fas fa-biohazard text-xl"></i>
+                <i class="fas fa-mask text-xl"></i>
+            </div>
+        </div>
+
+        <!-- Sağ Panel: Tehlike Verileri -->
+        <div class="main-content">
+            
+            <!-- Siber Zorbalık Verisi -->
+            <div class="warning-card">
+                <span class="section-tag">Siber Zorbalık</span>
+                <div class="flex items-end gap-4">
+                    <div class="stat-highlight" id="percent-counter">0%</div>
+                    <div class="mb-4">
+                        <i class="fas fa-mobile-alt text-3xl text-red-500 mb-2"></i>
+                        <div class="h-1 w-20 bg-red-900"><div id="fill-bar" class="h-full bg-red-600 w-0 transition-all duration-1000"></div></div>
+                    </div>
+                </div>
+                <p class="text-xl font-bold text-white mt-2">Gençlerin %46'sı siber zorbalığa maruz kaldı.</p>
+                <p class="text-sm text-gray-400 mt-1 italic">Dijital şiddet, fiziksel yaralardan daha derin izler bırakır.</p>
+            </div>
+
+            <!-- Diğer Tehlikeler -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="warning-card">
+                    <span class="section-tag">Fake News</span>
+                    <h3 class="text-lg font-bold mb-2">Yalan Haber</h3>
+                    <p class="text-xs text-gray-400">Gerçeklerin saptırılma oranı son 3 yılda %300 arttı. Algoritmalar kaosu besliyor.</p>
+                    <i class="fas fa-eye-slash absolute bottom-4 right-4 opacity-10 text-4xl"></i>
+                </div>
+                <div class="warning-card">
+                    <span class="section-tag">Nefret Söylemi</span>
+                    <h3 class="text-lg font-bold mb-2">Linç Kültürü</h3>
+                    <p class="text-xs text-gray-400">Yorum bölümlerinin %15'i doğrudan saldırgan ve nefret odaklı içerik barındırıyor.</p>
+                    <i class="fas fa-angry absolute bottom-4 right-4 opacity-10 text-4xl"></i>
+                </div>
+            </div>
+
+            <!-- Uyarı Butonu -->
+            <div class="mt-4 flex items-center justify-between bg-red-950 p-4 border border-red-800 rounded">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-radiation text-red-500"></i>
+                    <span class="text-xs uppercase tracking-widest font-bold">Sistem Uyarısı: Dijital ayak izini kontrol et.</span>
+                </div>
+                <button class="bg-red-600 hover:bg-white hover:text-red-600 text-white text-xs font-bold py-2 px-4 transition-all duration-300">
+                    ACİL DURUM PLANI
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rastgele Kırık Efektleri -->
+    <div id="cracks"></div>
+
+    <script>
+        window.onload = () => {
+            // Yüzde Sayacı
+            let count = 0;
+            const target = 46;
+            const counterElement = document.getElementById('percent-counter');
+            
+            const timer = setInterval(() => {
+                count++;
+                counterElement.innerText = "%" + count;
+                if(count >= target) {
+                    clearInterval(timer);
+                    document.getElementById('fill-bar').style.width = '46%';
+                }
+            }, 30);
+
+            // Kırık çizgileri oluştur
+            const crackContainer = document.getElementById('cracks');
+            for(let i=0; i<10; i++) {
+                const crack = document.createElement('div');
+                crack.className = 'crack-line';
+                crack.style.width = Math.random() * 200 + 'px';
+                crack.style.top = Math.random() * 100 + 'vh';
+                crack.style.left = Math.random() * 100 + 'vw';
+                crack.style.transform = `rotate(${Math.random() * 360}deg)`;
+                crack.style.opacity = Math.random() * 0.2;
+                document.body.appendChild(crack);
+            }
+        }
+    </script>
+</body>
+</html>

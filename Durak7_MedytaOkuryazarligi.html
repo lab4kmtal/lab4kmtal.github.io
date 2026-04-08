@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Dedektif: Gerçeğin İzinde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            font-family: 'Courier Prime', monospace;
+            background-color: #e5e5e5;
+            background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .detective-font {
+            font-family: 'Special Elite', cursive;
+        }
+        .cork-board {
+            background-color: #d4a373;
+            border: 16px solid #8b5a2b;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+        }
+        .newspaper-clip {
+            background-color: #f4f1ea;
+            transform: rotate(-1deg);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+            border-left: 1px solid #ddd;
+        }
+        .pin {
+            width: 15px;
+            height: 15px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .magnifier {
+            font-size: 5rem;
+            filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.1));
+        }
+        .string {
+            height: 2px;
+            background-color: #991b1b;
+            opacity: 0.4;
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <!-- Ana Sayfa Linki -->
+    <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+        <i class="fas fa-home"></i> Ana Sayfa
+    </a>
+
+    <div class="max-w-6xl mx-auto">
+        
+        <!-- Main Board -->
+        <div class="cork-board rounded-lg p-6 md:p-12 relative overflow-hidden">
+            
+            <!-- Header Section -->
+            <div class="text-center mb-12 relative z-10">
+                <div class="magnifier mb-2">🔍</div>
+                <h1 class="detective-font text-4xl md:text-6xl font-bold text-slate-900 mb-4 tracking-tighter">HER GÖRDÜĞÜNE İNANMA!</h1>
+                <p class="text-xl text-amber-900 font-bold bg-amber-200/50 inline-block px-4 py-1 rounded">Dijital Dedektif Görev Başında</p>
+            </div>
+
+            <!-- Investigation Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                
+                <!-- Step 1 -->
+                <div class="newspaper-clip p-6 relative group">
+                    <div class="pin"></div>
+                    <span class="text-4xl block mb-2">01.</span>
+                    <h2 class="detective-font text-2xl font-bold border-b-2 border-slate-300 mb-4 text-slate-800 uppercase">Kaynağı Kontrol Et</h2>
+                    <p class="text-slate-700 leading-relaxed">Bilgi nereden geliyor? Resmi bir kurum mu yoksa anonim bir hesap mı? İz sür ve ilk kaynağı bul.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="newspaper-clip p-6 relative mt-4 md:mt-8" style="transform: rotate(1deg);">
+                    <div class="pin bg-blue-500"></div>
+                    <span class="text-4xl block mb-2">02.</span>
+                    <h2 class="detective-font text-2xl font-bold border-b-2 border-slate-300 mb-4 text-slate-800 uppercase">Doğrula</h2>
+                    <p class="text-slate-700 leading-relaxed">Farklı tanıklara (kaynaklara) başvur. En az üç güvenilir yerde aynı bilgi var mı? Kanıtları karşılaştır.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="newspaper-clip p-6 relative" style="transform: rotate(-2deg);">
+                    <div class="pin"></div>
+                    <span class="text-4xl block mb-2">03.</span>
+                    <h2 class="detective-font text-2xl font-bold border-b-2 border-slate-300 mb-4 text-slate-800 uppercase">Paylaşma</h2>
+                    <p class="text-slate-700 leading-relaxed">Şüphen varsa dosyayı kapat ve paylaşma! Yalan haberin yayılmasını durdurmak senin sorumluluğunda.</p>
+                </div>
+
+            </div>
+
+            <!-- Red Strings (Visual Decor) -->
+            <div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 string -rotate-12 pointer-events-none"></div>
+            <div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 string rotate-6 pointer-events-none"></div>
+
+            <!-- Bottom Note -->
+            <div class="mt-16 bg-white/80 p-4 border-2 border-slate-400 inline-block rotate-1 mx-auto block max-w-sm text-center shadow-lg">
+                <p class="detective-font text-sm text-slate-600 italic">"İnternet bir suç mahalli olabilir, delillerini toplamadan karar verme."</p>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-slate-500 text-xs tracking-widest uppercase">
+            Dosya No: #2024-DE-01 | Gizli ve Eğitici Materyal
+        </footer>
+
+    </div>
+</body>
+</html>

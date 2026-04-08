@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AH SOSYAL | Dijital Sergi Ana Sayfa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #050505;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            perspective: 1000px;
+        }
+
+        .space-container {
+            position: relative;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #1a1033 0%, #050505 100%);
+            overflow: hidden;
+        }
+
+        /* Arka plan partikülleri */
+        .stars {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: moveStars 100s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-2000px); }
+        }
+
+        /* Ana Başlık */
+        .main-title {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            text-align: center;
+            color: #fff;
+            text-shadow: 
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px var(--neon-blue),
+                0 0 82px var(--neon-blue),
+                0 0 92px var(--neon-blue),
+                0 0 102px var(--neon-blue),
+                0 0 151px var(--neon-blue);
+            margin-bottom: 2rem;
+        }
+
+        /* Durak Kartları */
+        .station-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .station-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
+        }
+
+        .station-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(188, 19, 254, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .station-card:hover::before {
+            left: 100%;
+        }
+
+        .station-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+        }
+
+        .station-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .station-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Grid Düzeni */
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Mouse Takip Efekti */
+        #glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(188, 19, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.5rem; }
+            .stations-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="space-container" id="container">
+        <div id="glow"></div>
+        
+        <div class="text-center pt-20 pb-10">
+            <h1 class="main-title">AH SOSYAL</h1>
+            <p class="text-lg text-gray-300 mb-10">Dijital Dünyada Nasıl Bir İz Bırakıyorsun?</p>
+            <p class="text-sm text-gray-400">TÜBİTAK 4006 Bilim Fuarı Dijital Sergi</p>
+        </div>
+
+        ,,,,,,,,,,,,,
+        <div class="stations-grid">
+            <div class="station-card" onclick="goToStation('Durak1_giris_Ahsosyal.html')">
+                <div class="station-number">01</div>
+                <div class="station-title">Giriş</div>
+                <div class="station-desc">Dijital sergiye hoş geldiniz. Sosyal medya yolculuğunuz burada başlıyor.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak2_SosyalmedyaGercegi.html')">
+                <div class="station-number">02</div>
+                <div class="station-title">Sosyal Medya Gerçeği</div>
+                <div class="station-desc">Sosyal medya kullanım istatistikleri ve gerçekler.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak3_dijital_zorbalık.html')">
+                <div class="station-number">03</div>
+                <div class="station-title">Dijital Zorbalık</div>
+                <div class="station-desc">Dijital dünyada karşılaşılan zorbalık türleri ve etkileri.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak4_SenaryoAlani.html')">
+                <div class="station-number">04</div>
+                <div class="station-title">Senaryo Alanı</div>
+                <div class="station-desc">Gerçek hayat senaryoları ile dijital davranışları keşfedin.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak5_AnketSonuclari.html')">
+                <div class="station-number">05</div>
+                <div class="station-title">Anket Sonuçları</div>
+                <div class="station-desc">Katılımcıların dijital davranışlarına dair anket sonuçları.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak6_DogruDavranis.html')">
+                <div class="station-number">06</div>
+                <div class="station-title">Doğru Davranış</div>
+                <div class="station-desc">Dijital dünyada doğru davranış kuralları ve öneriler.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak7_MedytaOkuryazarligi.html')">
+                <div class="station-number">07</div>
+                <div class="station-title">Medya Okuryazarlığı</div>
+                <div class="station-desc">Medya okuryazarlığı becerilerini geliştirme yolları.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak8_DijitalAyakİzi.html')">
+                <div class="station-number">08</div>
+                <div class="station-title">Dijital Ayak İzi</div>
+                <div class="station-desc">Dijital dünyada bıraktığınız izleri keşfedin.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak9_UrunlerAlani.html')">
+                <div class="station-number">09</div>
+                <div class="station-title">Ürünler Alanı</div>
+                <div class="station-desc">Dijital ürünler ve araçlar hakkında bilgi.</div>
+            </div>
+            
+            <div class="station-card" onclick="goToStation('Durak10_FinalMesaj.html')">
+                <div class="station-number">10</div>
+                <div class="station-title">Final Mesajı</div>
+                <div class="station-desc">Serginin sonu ve özet mesajlar.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const glow = document.getElementById('glow');
+
+        // Mouse takibi
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Yıldızları oluştur
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'stars';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 10 + 's';
+            container.appendChild(star);
+        }
+
+        function goToStation(filename) {
+            window.location.href = filename;
+        }
+    </script>
+</body>
+</html>

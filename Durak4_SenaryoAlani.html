@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHSOSYAL | Sen Ne Yapardın?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+        :root {
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            background-color: #0f172a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Akıllı Telefon Kasası */
+        .phone-frame {
+            width: 380px;
+            height: 760px;
+            background: #1e293b;
+            border: 12px solid #334155;
+            border-radius: 50px;
+            position: relative;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Üst Çentik */
+        .notch {
+            width: 150px;
+            height: 25px;
+            background: #334155;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 20;
+        }
+
+        /* Mesaj Alanı */
+        .chat-container {
+            flex: 1;
+            padding: 60px 20px 20px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #f8fafc;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            position: relative;
+            animation: messageAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes messageAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .received {
+            background: #e2e8f0;
+            color: #1e293b;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .sent {
+            background: #0284c7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .typing {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        /* Karar Paneli */
+        .decision-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, #0f172a 30%);
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .decision-btn {
+            background: white;
+            color: #0f172a;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            width: 100%;
+        }
+
+        .decision-btn:hover {
+            background: #38bdf8;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .scenario-indicator {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(2, 132, 199, 0.2);
+            color: #38bdf8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 40;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        /* Ana Sayfa Butonu */
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .home-btn:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ana Sayfa Linki -->
+    <a href="index.html" class="fixed top-4 right-4 z-50 home-btn">
+        <i class="fas fa-home"></i> Ana Sayfa
+    </a>
+
+    <!-- Arka Plan Başlığı -->
+    <div class="absolute top-10 left-10 hidden lg:block">
+        <h2 class="text-4xl font-black opacity-10">SEN NE YAPARDIN?</h2>
+        <p class="text-slate-500 max-w-xs mt-2">Dijital etik ve seçimlerimiz serginin bu bölümünde test ediliyor.</p>
+    </div>
+
+    <!-- Telefon Ünitesi -->
+    <div class="phone-frame">
+        <div class="notch"></div>
+        <div class="scenario-indicator" id="scenario-label">Senaryo 1/3</div>
+        
+        <div class="chat-container" id="chat-box">
+            <!-- Mesajlar buraya dinamik eklenecek -->
+        </div>
+
+        <div class="decision-overlay" id="ui-overlay">
+            <h3 class="question-text">Sen ne yapardın?</h3>
+            <div id="options-container">
+                <!-- Seçenekler buraya dinamik eklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                label: "Zorbalık",
+                messages: [
+                    { type: 'received', text: "Gruptaki profil fotoğrafını gördün mü?" },
+                    { type: 'received', text: "Sen çok saçmasın 😂" }
+                ],
+                options: [
+                    { text: "Gülerek karşılık veririm", next: 1 },
+                    { text: "Zorbalık olduğunu belirtirim", next: 1 },
+                    { text: "Mesajı report eder ve çıkarım", next: 1 }
+                ]
+            },
+            {
+                label: "Dezenformasyon",
+                messages: [
+                    { type: 'received', text: "ACİL! Şehirdeki su sistemine zehir karışmış!" },
+                    { type: 'received', text: "Bu haber kesin doğru, hemen grupta paylaş!" }
+                ],
+                options: [
+                    { text: "Hemen herkese gönderirim", next: 2 },
+                    { text: "Kaynağını doğrularım", next: 2 },
+                    { text: "Resmi makamları beklerim", next: 2 }
+                ]
+            },
+            {
+                label: "Özel Hayat",
+                messages: [
+                    { type: 'received', text: "Buna inanamayacaksın..." },
+                    { type: 'received', text: "Arkadaşının özel fotoğrafı paylaşıldı. Bakmak ister misin?" }
+                ],
+                options: [
+                    { text: "Görmek için linki isterim", next: 0 },
+                    { text: "Bunu yapmamalısın derim", next: 0 },
+                    { text: "Arkadaşımı uyarırım", next: 0 }
+                ]
+            }
+        ];
+
+        let currentStep = 0;
+        const chatBox = document.getElementById('chat-box');
+        const optionsContainer = document.getElementById('options-container');
+        const scenarioLabel = document.getElementById('scenario-label');
+
+        function loadScenario(index) {
+            chatBox.innerHTML = '';
+            optionsContainer.innerHTML = '';
+            scenarioLabel.innerText = `Senaryo ${index + 1}/3 - ${scenarios[index].label}`;
+
+            let delay = 500;
+            scenarios[index].messages.forEach((msg, i) => {
+                setTimeout(() => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = `message ${msg.type}`;
+                    msgDiv.innerText = msg.text;
+                    chatBox.appendChild(msgDiv);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, delay);
+                delay += 1000;
+            });
+
+            setTimeout(() => {
+                scenarios[index].options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'decision-btn';
+                    btn.innerText = opt.text;
+                    btn.onclick = () => {
+                        const sentMsg = document.createElement('div');
+                        sentMsg.className = 'message sent';
+                        sentMsg.innerText = opt.text;
+                        chatBox.appendChild(sentMsg);
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                        
+                        setTimeout(() => {
+                            if(index < scenarios.length - 1) {
+                                loadScenario(opt.next);
+                            } else {
+                                alert("Tüm kararları verdin. Dijital ayak izin şekilleniyor.");
+                                loadScenario(0);
+                            }
+                        }, 1500);
+                    };
+                    optionsContainer.appendChild(btn);
+                });
+            }, delay + 500);
+        }
+
+        loadScenario(0);
+    </script>
+</body>
+</html>
